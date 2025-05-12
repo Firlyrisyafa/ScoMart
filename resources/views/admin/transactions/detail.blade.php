@@ -55,7 +55,7 @@
                         <option value="pending" {{ $transaction->status == 'pending' ? 'selected' : '' }}>Pending</option>
                         <option value="approved" {{ $transaction->status == 'approved' ? 'selected' : '' }}>Approved</option>
                         <option value="rejected" {{ $transaction->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
-                        <option value="completed" {{ $transaction->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                        <!-- <option value="completed" {{ $transaction->status == 'completed' ? 'selected' : '' }}>Completed</option> -->
                     </select>
                 </div>
 

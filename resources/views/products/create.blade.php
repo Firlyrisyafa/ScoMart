@@ -7,7 +7,7 @@
         @csrf
         <div class="mb-3">
             <label>URL Foto Produk</label>
-            <input type="url" name="gambar" id="gambar" class="form-control" placeholder="https://contoh.com/gambar.jpg" value="{{ old('gambar', $product->gambar ?? '') }}">
+            <input type="url" name="gambar" id="gambar" class="form-control"  value="{{ old('gambar', $product->gambar ?? '') }}">
 
             <!-- <input type="text" name="image_url" class="form-control rounded-md" required> -->
         <div class="mb-3">
