@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Dashboard')</title>
 
-    {{-- Load Bootstrap compiled CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-
-    {{-- Optional custom style --}}
+    {{-- Hapus asset() dan @vite karena tidak dibuild di Railway --}}
     {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
-    {{-- SweetAlert --}}
+    {{-- Bootstrap & SweetAlert CDN --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 <body class="bg-light">
 
@@ -36,7 +33,7 @@
         </main>
     </div>
 
-    {{-- Load Bootstrap compiled JS --}}
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    {{-- Bootstrap Bundle JS --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
