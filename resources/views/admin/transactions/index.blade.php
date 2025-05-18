@@ -13,7 +13,7 @@
                     <th>Total</th>
                     <th>Metode Pembayaran</th>
                     <th>Status</th>
-                    <th>Bukti Pembayaran</th>
+                    <!-- <th>Bukti Pembayaran</th> -->
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -23,7 +23,10 @@
                         <td>{{ $transaction->id }}</td>
                         <td>{{ $transaction->user->name }}</td>
                         <td>Rp{{ number_format($transaction->total, 0, ',', '.') }}</td>
-                        <td>{{ ucfirst($transaction->metode_pembayaran) }}</td>
+                        <td>
+                            {{ $transaction->metode_pembayaran === 'manual' ? 'Online' : ($transaction->metode_pembayaran === 'online' ? 'Offline' : $transaction->metode_pembayaran) }}
+                        </td>
+                        <!-- <td>{{ ucfirst($transaction->metode_pembayaran) }}</td> -->
                         <td>
                             @if ($transaction->status == 'pending')
                                 <span class="badge bg-warning text-dark">Pending</span>
@@ -33,13 +36,13 @@
                                 <span class="badge bg-danger">Rejected</span>
                             @endif
                         </td>
-                        <td>
+                        <!-- <td>
                             @if ($transaction->bukti_pembayaran)
                                 <a href="{{ asset('storage/' . $transaction->bukti_pembayaran) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Bukti</a>
                             @else
                                 -
                             @endif
-                        </td>
+                        </td> -->
                         <td>
                             <a href="{{ route('admin.transactions.detail', $transaction->id) }}" class="btn btn-sm btn-info">Detail</a>
                         </td>

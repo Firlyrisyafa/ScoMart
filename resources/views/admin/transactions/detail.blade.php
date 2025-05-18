@@ -9,14 +9,18 @@
         <ul class="list-group mb-3">
             <li class="list-group-item"><strong>Nama User:</strong> {{ $transaction->user->name }}</li>
             <li class="list-group-item"><strong>Total:</strong> Rp{{ number_format($transaction->total, 0, ',', '.') }}</li>
-            <li class="list-group-item"><strong>Metode Pembayaran:</strong> {{ ucfirst($transaction->metode_pembayaran) }}</li>
+            <li class="list-group-item">
+                <strong>Metode Pembayaran:</strong>
+                {{ $transaction->metode_pembayaran === 'manual' ? 'Online' : ($transaction->metode_pembayaran === 'online' ? 'Offline' : ucfirst($transaction->metode_pembayaran)) }}
+            </li>
+            <!-- <li class="list-group-item"><strong>Metode Pembayaran:</strong> {{ ucfirst($transaction->metode_pembayaran) }}</li> -->
             <li class="list-group-item"><strong>Status:</strong> {{ ucfirst($transaction->status) }}</li>
-            @if ($transaction->bukti_pembayaran)
+            <!-- @if ($transaction->bukti_pembayaran)
                 <li class="list-group-item">
                     <strong>Bukti Pembayaran:</strong><br>
                     <img src="{{ asset('storage/' . $transaction->bukti_pembayaran) }}" alt="Bukti Pembayaran" width="300px" class="mt-2">
                 </li>
-            @endif
+            @endif -->
         </ul>
 
         <h5>Produk dalam Transaksi</h5>

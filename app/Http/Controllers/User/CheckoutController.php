@@ -28,7 +28,7 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'metode_pembayaran' => 'required|in:manual,online',
-            'bukti_pembayaran' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // hanya jika manual
+            // 'bukti_pembayaran' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // hanya jika manual
         ]);
 
         $user = auth()->user();
@@ -46,11 +46,11 @@ class CheckoutController extends Controller
             }
 
             // Simpan bukti pembayaran kalau metode manual
-            if ($request->hasFile('bukti_pembayaran')) {
-                $buktiPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
-            } else {
-                $buktiPath = null;
-            }
+            // if ($request->hasFile('bukti_pembayaran')) {
+            //     $buktiPath = $request->file('bukti_pembayaran')->store('bukti_pembayaran', 'public');
+            // } else {
+            //     $buktiPath = null;
+            // }
 
 
             // Buat transaksi
@@ -58,7 +58,7 @@ class CheckoutController extends Controller
                 'user_id' => $user->id,
                 'total' => $total,
                 'metode_pembayaran' => $request->metode_pembayaran,
-                'bukti_pembayaran' => $buktiPath,
+                // 'bukti_pembayaran' => null,
             ]);
 
             // Buat item transaksi

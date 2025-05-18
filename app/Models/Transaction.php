@@ -10,7 +10,7 @@ class Transaction extends Model
     protected $fillable = [
         'user_id',
         'total',
-        'bukti_pembayaran',
+        // 'bukti_pembayaran',
         'metode_pembayaran',
         'status',
     ];

@@ -51,24 +51,34 @@
 </div>
         <p class="text-muted text-center">Jika sudah melakukan pembayaran, silahkan upload bukti pembayaran di bawah ini</p>
 
-        <form action="{{ route('checkout.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('checkout.store') }}" method="POST" >
             @csrf
 
             <div class="mb-3">
                 <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
                 <select name="metode_pembayaran" id="metode_pembayaran" class="form-select" onchange="toggleBukti()" required>
                     <option value="">-- Pilih Metode --</option>
-                    <option value="manual">Online (Upload Bukti Transfer)</option>
+                    <option value="manual">Online (Kirim Bukti Transfer ke WA)</option>
                     <option value="online">Offline</option>
                 </select>
             </div>
 
-            <div class="mb-3" id="bukti_container" style="display: none;">
-                <label for="bukti_pembayaran" class="form-label">Upload Bukti Pembayaran</label>
-
-                <input type="file" name="bukti_pembayaran" class="form-control" accept="image/*">
+            <div class="alert alert-info mt-3">
+                Jika memilih pembayaran secara offline, maka silahkan anak anda membawa uang tunai dan datang ke koperasi sesuai urutan kelas yang dipanggil.
             </div>
 
+            @php
+                $nomorWa = '62881036600912'; // Ganti ke nomor kamu
+                $pesanBukti = "Halo! Saya ingin mengirimkan bukti transfer untuk pesanan Sco-Mart. Nama pengguna saya: ";
+                $waLinkBukti = "https://wa.me/$nomorWa?text=" . urlencode($pesanBukti);
+            @endphp
+            
+
+            <div class="mb-3" id="bukti_container" style="display: none;">
+                <p class="form-text text-muted">
+                    Silakan <a href="{{ $waLinkBukti }}" target="_blank" class="text-success fw-bold">kirim bukti transfer ke WhatsApp ini</a> beserta nama pengguna kamu.
+                </p>
+            </div>
 
             <button type="submit" class="btn btn-success">Checkout Sekarang</button>
         </form>

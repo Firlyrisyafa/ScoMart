@@ -13,7 +13,7 @@
         <!-- Sambutan -->
         <div class="mb-4 text-center">
             <p class="fs-4 fw-medium text-dark">
-                Selamat datang di dashboard user, {{ Auth::user()->name }}!
+                Selamat datang di ScoMart, {{ Auth::user()->name }}!
             </p>
         </div>
 

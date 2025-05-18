@@ -8,7 +8,10 @@
         <h5 class="pb-4">Informasi Transaksi</h5>
         <ul class="list-group mb-3">
             <li class="list-group-item"><strong>Total:</strong> Rp{{ number_format($transaction->total, 0, ',', '.') }}</li>
-            <li class="list-group-item"><strong>Metode Pembayaran:</strong> {{ ucfirst($transaction->metode_pembayaran) }}</li>
+            <li class="list-group-item"><strong>Metode Pembayaran:</strong>
+                {{ $transaction->metode_pembayaran === 'manual' ? 'Online' : ($transaction->metode_pembayaran === 'online' ? 'Offline' : ucfirst($transaction->metode_pembayaran)) }}
+            </li>
+            <!-- <li class="list-group-item"><strong>Metode Pembayaran:</strong> {{ ucfirst($transaction->metode_pembayaran) }}</li> -->
             <li class="list-group-item"><strong>Status:</strong>
                 @if ($transaction->status == 'pending')
                     <span class="badge bg-warning text-dark">Menunggu Konfirmasi</span>
@@ -18,12 +21,12 @@
                     <span class="badge bg-danger">Ditolak</span>
                 @endif
             </li>
-            @if ($transaction->bukti_pembayaran)
+            <!-- @if ($transaction->bukti_pembayaran)
                 <li class="list-group-item">
                     <strong>Bukti Pembayaran:</strong><br>
                     <img src="{{ asset('storage/' . $transaction->bukti_pembayaran) }}" alt="Bukti Pembayaran" class="img-fluid mt-2" style="max-width: 400px;">
                 </li>
-            @endif
+            @endif -->
         </ul>
 
         <h5 class="pb-4">Item Pembelian</h5>
@@ -43,12 +46,13 @@
                         <td>Rp{{ number_format($item->harga_satuan, 0, ',', '.') }}</td>
                         <td>{{ $item->jumlah }}</td>
                         <td>Rp{{ number_format($item->harga_satuan * $item->jumlah, 0, ',', '.') }}</td>
-                        <td><a href="{{ route('riwayat.download', $transaction->id) }}" class="btn btn-success mb-3">Download Struk PDF</a></td>
+                        <!-- <td><a href="{{ route('riwayat.download', $transaction->id) }}" class="btn btn-success mb-3">Download Struk PDF</a></td> -->
                     </tr>
                 @endforeach
             </tbody>
         </table>
 
+        <a href="{{ route('riwayat.download', $transaction->id) }}" class="btn btn-success">Download Struk PDF</a>
         <a href="{{ route('riwayat.index') }}" class="btn btn-secondary mt-3">Kembali</a>
     </div>
 </div>
