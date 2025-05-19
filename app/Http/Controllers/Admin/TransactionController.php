@@ -36,5 +36,20 @@ class TransactionController extends Controller
 
         return redirect()->route('admin.transactions.index')->with('success', 'Transaksi ditolak!');
     }
+        // Untuk user batalin pesanan
+    public function cancel($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+
+        // Hanya bisa dibatalkan jika statusnya masih pending
+        if ($transaction->status === 'pending') {
+            $transaction->status = 'cancelled';
+            $transaction->save();
+
+            return redirect()->back()->with('success', 'Pesanan berhasil dibatalkan.');
+        }
+
+        return redirect()->back()->with('error', 'Pesanan tidak bisa dibatalkan.');
+    }
 
 }

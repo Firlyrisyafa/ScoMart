@@ -35,4 +35,19 @@ class TransactionHistoryController extends Controller
         return $pdf->download('struk-transaksi-'.$transaction->id.'.pdf');
     }
 
+    public function cancel($id)
+{
+        $transaction = Transaction::where('user_id', Auth::id())->findOrFail($id);
+
+        if (trim(strtolower($transaction->status)) !== strtolower('menunggu konfirmasi')) {
+            $transaction->status = 'Dibatalkan';
+            $transaction->save();
+
+            return redirect()->route('riwayat.index')->with('success', 'Transaksi berhasil dibatalkan.');
+    }
+
+        return redirect()->route('riwayat.index')->with('error', 'Transaksi tidak dapat dibatalkan.');
+}
+
+
 }

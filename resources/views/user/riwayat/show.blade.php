@@ -54,6 +54,12 @@
 
         <a href="{{ route('riwayat.download', $transaction->id) }}" class="btn btn-success">Download Struk PDF</a>
         <a href="{{ route('riwayat.index') }}" class="btn btn-secondary mt-3">Kembali</a>
+        @if ($transaction->status === 'pending')
+            <form action="{{ route('transaction.cancel', $transaction->id) }}" method="POST" onsubmit="return confirm('Yakin ingin membatalkan pesanan ini?')">
+                @csrf
+                <button type="submit" class="btn btn-danger w-100 mt-2">Batalkan Pesanan</button>
+            </form>
+        @endif
     </div>
 </div>
 @endsection

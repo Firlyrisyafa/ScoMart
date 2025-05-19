@@ -52,6 +52,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/riwayat-transaksi', [TransactionHistoryController::class, 'index'])->name('riwayat.transaksi');
     Route::get('/riwayat-transaksi/{id}', [TransactionHistoryController::class, 'show'])->name('riwayat.detail');
     Route::get('/riwayat-transaksi/{id}/download', [TransactionHistoryController::class, 'download'])->name('riwayat.download');
+    Route::post('/riwayat-transaksi/{id}/batal', [TransactionHistoryController::class, 'cancel'])->name('transaction.cancel');
 
 });
 

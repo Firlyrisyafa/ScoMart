@@ -9,6 +9,7 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Kelas</th> <!-- Tambahan -->
                     <th>Nama User</th>
                     <th>Total</th>
                     <th>Metode Pembayaran</th>
@@ -21,6 +22,7 @@
                 @foreach ($transactions as $transaction)
                     <tr>
                         <td>{{ $transaction->id }}</td>
+                        <td>{{ $transaction->user->kelas }}</td> <!-- Tambahan -->
                         <td>{{ $transaction->user->name }}</td>
                         <td>Rp{{ number_format($transaction->total, 0, ',', '.') }}</td>
                         <td>
@@ -34,6 +36,8 @@
                                 <span class="badge bg-success">Approved</span>
                             @elseif ($transaction->status == 'rejected')
                                 <span class="badge bg-danger">Rejected</span>
+                            @elseif($transaction->status == 'Dibatalkan')
+                                <span class="badge bg-danger">Cancelled</span>
                             @endif
                         </td>
                         <!-- <td>
